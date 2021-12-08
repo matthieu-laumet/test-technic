@@ -1,0 +1,56 @@
+<div class="banner-movie">
+  <div class="container-banner-movie text-left">
+    <div class="title"><h1 id="buddy">Allo </h1><h1 id="bot">Film</h1></div>
+    <h2>Le 1<sup>er</sup> refencement sur le cinéma</h2>
+      <div class="paragraphe">
+        <p>En gros c'est un peu comme Allociné. <strong class="focus">Sauf que Nous, </strong> on propose du streaming</p>
+      </div>
+  </div>
+</div>
+
+<div class="container-movies">
+  <div class="movie-title">
+    <h1>Les films les plus populaires</h1>
+    <button class="btn-new-movie btn btn-danger modal-btn ml-3">Ajouter un film</button>
+  </div>
+
+
+  <div class="cards">
+    <% @movies.each do |movie| %>
+      <%= button_to(
+        movie_path(movie),
+        method: :get,
+        class: "btn-stripped"
+      )do %>
+        <div class="card-movie">
+          <div class="card-photo-part">
+              <%= image_tag movie.image, crop: :fill, class: "card-photo-blur" %>
+              <%= image_tag movie.image, crop: :fill, class: "card-photo" %>
+            <%= link_to(
+              movie_path(movie),
+              method: :delete, remote: true,
+              data: { confirm: "Souhaitez-vous supprimer ce film ?" }
+            ) do %>
+              <i class="fas fa-trash card-trash"></i>
+            <% end %>
+          </div>
+          <div class="card-body-part">
+              <h3 class="card-title m-0"><%= movie.title %></h5>
+              <p class="card-text"><%= movie.year %></p>
+              <% array_actor = movie.actors.split('"') %>
+              <% actors = array_actor.select do |item| %>
+                <% item.length > 2 %>
+              <% end %>
+              <p class="card-text"> <%= actors.first(5).join(', ')  %> </p>
+              <%#= raise %>
+              <% array_genre = movie.genre.split('"') %>
+              <% genre = array_genre.select do |item| %>
+                <% item.length > 2 %>
+              <% end %>
+              <p class="card-text"> <%= genre.join(', ')  %> </p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

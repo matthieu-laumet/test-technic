@@ -5,7 +5,7 @@ serialized_movies = File.read('/Users/wendiemaestri/code/matthieu-laumet/test-te
 
 movies = JSON.parse(serialized_movies)
 
-movies.first(100).each do |movie|
+movies.each do |movie|
   Movie.create!(movie)
 end
 

@@ -1,0 +1,26 @@
+<div class="modal-container">
+
+<h1 id="Nouvelle-converse">Nouveau film</h1>
+    <%= simple_form_for(movie) do |f| %>
+  <div class="formulaire">
+      <div class="colonne-1 mr-4">
+        <%= f.input :title, label: 'Titre', placeholder: 'Titre de mon film' %>
+        <%= f.input :alternative_titles, label: 'alt-Titre', placeholder: 'Titre alternatif de mon film' %>
+        <%= f.input :year, label: 'Year', placeholder: 'Année de sortie' %>
+        <%= f.input :image, label: 'image', placeholder: 'Poster du film' %>
+        <%= f.input :color, label: 'color', placeholder: 'couleur ?' %>
+      </div>
+      <div class="colonne-2 mr-4">
+        <%= f.input :score, label: 'score', placeholder: 'score du film' %>
+        <%= f.input :rating, label: 'rating', placeholder: 'rating du film' %>
+        <%= f.input :actors, label: 'actors', placeholder: 'actors du film' %>
+        <%= f.input :actor_facets, label: 'actor_facets', placeholder: 'actor_facets du film' %>
+        <%= f.input :genre, label: 'genre', placeholder: 'genre du film' %>
+      </div>
+      <%= f.button :submit, 'Créer !', class: 'btn btn-danger' %>
+    <% end %>
+    <span class="modal-close" id="modal-close-new"><i class="fas fa-times"></i></span>
+  </div>
+
+
+</div>

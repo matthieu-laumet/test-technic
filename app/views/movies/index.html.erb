@@ -11,12 +11,20 @@
 <div class="container-movies">
   <div class="movie-title">
     <h1>Les films les plus populaires</h1>
+    <%= form_tag movies_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a movie"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
     <button class="btn-new-movie btn btn-danger modal-btn ml-3">Ajouter un film</button>
   </div>
 
 
   <div class="cards">
-    <% @movies.each do |movie| %>
+    <% @movies.sort_by { |movie| movie.year }.each do |movie| %>
       <%= button_to(
         movie_path(movie),
         method: :get,

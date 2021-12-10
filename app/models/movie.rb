@@ -13,5 +13,4 @@ class Movie < ApplicationRecord
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
     }
 
-    # [ :title, :alternative_titles, :year, :score, :rating, :actors, :genre ]
 end

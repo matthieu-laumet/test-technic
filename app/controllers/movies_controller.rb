@@ -13,7 +13,9 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.new(movie_params)
+    @objectID = Movie.last.objectID + 1
+    @movie = Movie.new(title: params[:movie][:title], objectID: @objectID, actors: params[:movie][:actors], alternative_titles: params[:movie][:alternative_titles], year: params[:movie][:year], score: params[:movie][:score], rating: params[:movie][:rating], genre: params[:movie][:genre])
+    # raise
     if @movie.save
       redirect_to movie_path(@movie)
     else
@@ -35,7 +37,7 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.require(:movie).permit(:title, :alternative_titles, :year, :score, :rating, :actors, :genre)
+    params.require(:movie).permit(:title, :alternative_titles, :year, :score, :rating, :actors, :genre, :objectID)
   end
 
 end
